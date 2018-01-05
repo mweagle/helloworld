@@ -2,7 +2,7 @@ steps:
 - bash: mkdir -pv ./gopath/src/github.com/mweagle/helloworld
   displayName: Initialize source directory
 
-- bash: mv  -v ./* ./gopath/src/github.com/mweagle/helloworld
+- bash: mv !(gopath) -v ./* ./gopath/src/github.com/mweagle/helloworld
   displayName: Move source
 
 - bash: curl -L -O https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
