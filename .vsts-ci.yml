@@ -19,8 +19,9 @@ steps:
 - bash: ls -laR .
   displayName: Directory Listing
 
-- bash: $AGENT_WORKFOLDER/go/bin/go build
+- bash: $AGENT_BUILDDIRECTORY/go/bin/go build
   workingDirectory: ./gopath/src/github.com/mweagle/helloworld
   env:
-    GOPATH: $AGENT_WORKFOLDER/gopath
+    GOPATH: $AGENT_BUILDDIRECTORY/gopath
+    GOROOT: $AGENT_BUILDDIRECTORY/go
   displayName: Build
