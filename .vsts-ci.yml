@@ -16,7 +16,7 @@ steps:
 - bash: curl -L -O https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
   displayName: Download Go
 
-- bash: tar -xzf go1.9.2.linux-amd64.tar.gz -c $BUILD_SOURCESDIRECTORY
+- bash: tar -xzf go1.9.2.linux-amd64.tar.gz -C $BUILD_SOURCESDIRECTORY
   displayName: Expand Go
 
 - bash: ls -la .
