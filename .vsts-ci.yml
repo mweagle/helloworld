@@ -16,8 +16,11 @@ steps:
 - bash: tar -xzf go1.9.2.linux-amd64.tar.gz
   displayName: Expand Go
 
-- bash: ls -laR .
+- bash: ls -la .
   displayName: Directory Listing
+
+- bash: env
+  displayName: Build Environmennt
 
 - bash: $AGENT_BUILDDIRECTORY/go/bin/go build
   workingDirectory: ./gopath/src/github.com/mweagle/helloworld
