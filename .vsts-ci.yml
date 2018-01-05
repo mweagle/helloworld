@@ -13,10 +13,10 @@ steps:
 - bash: curl -L -O https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
   displayName: Download Go
 
-- bash: tar -xzvf go1.9.2.linux-amd64.tar.gz
+- bash: tar -xzf go1.9.2.linux-amd64.tar.gz
   displayName: Expand Go
 
-- bash: go build
+- bash: PATH=$PATH:../../../../../../go/bin go build
   workingDirectory: ./gopath/src/github.com/mweagle/helloworld
   env:
     GOROOT: ./go
