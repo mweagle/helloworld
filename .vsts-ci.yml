@@ -22,13 +22,10 @@ steps:
 - bash: ls -la .
   displayName: Directory Listing
 
-- bash: env
-  displayName: Build Environmennt
-
 - bash: pwd
   displayName: Current Directory
 
-- bash: env && $(BUILD_SOURCESDIRECTORY)/go/bin/go build
+- bash: env && $BUILD_SOURCESDIRECTORY/go/bin/go build
   workingDirectory: ./gopath/src/github.com/mweagle/helloworld
   env:
     GOPATH: $(Build.SourcesDirectory)/gopath
