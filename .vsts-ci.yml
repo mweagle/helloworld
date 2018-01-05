@@ -2,7 +2,12 @@ steps:
 - bash: mkdir -pv ./gopath/src/github.com/mweagle/helloworld
   displayName: Initialize source directory
 
-- bash: rsync -a --remove-source-files --exclude ./gopath ./ ./gopath/src/github.com/mweagle/helloworld
+- bash: |
+    for EACHFILE in $(ls .);
+    do if [ $EACHFILE != "gopath" ];
+      then mv -v $EACHFILE ./gopath/src/github.com/mweagle/helloworld/$EACHFILE;
+    fi;
+    done
   displayName: Move source
 
 - bash: curl -L -O https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
