@@ -23,14 +23,14 @@ steps:
   continueOnError: true
   displayName: Which Make
 
-- bash: env && $BUILD_SOURCESDIRECTORY/go/bin/go test -v .
+- bash: $BUILD_SOURCESDIRECTORY/go/bin/go test -v .
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   env:
     GOPATH: $(Build.SourcesDirectory)/gopath
     GOROOT: $(Build.SourcesDirectory)/go
   displayName: Unit Test
 
-- bash: env && $BUILD_SOURCESDIRECTORY/go/bin/go build -v .
+- bash: $BUILD_SOURCESDIRECTORY/go/bin/go build -v .
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   env:
     GOPATH: $(Build.SourcesDirectory)/gopath
