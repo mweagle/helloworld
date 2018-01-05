@@ -25,8 +25,8 @@ steps:
 - bash: pwd
   displayName: Current Directory
 
-- bash: env && $BUILD_SOURCESDIRECTORY/go/bin/go build
-  workingDirectory: ./gopath/src/github.com/mweagle/helloworld
+- bash: env && $BUILD_SOURCESDIRECTORY/go/bin/go build -v .
+  workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   env:
     GOPATH: $(Build.SourcesDirectory)/gopath
     GOROOT: $(Build.SourcesDirectory)/go
