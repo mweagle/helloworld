@@ -22,6 +22,9 @@ steps:
 - bash: env
   displayName: Build Environmennt
 
+- bash: pwd
+  displayName: Current Directory
+
 - bash: $AGENT_BUILDDIRECTORY/go/bin/go build
   workingDirectory: ./gopath/src/github.com/mweagle/helloworld
   env:
