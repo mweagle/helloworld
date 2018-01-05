@@ -1,3 +1,6 @@
+# Build environment:
+# https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/build/variables?tabs=batch
+
 steps:
 - bash: mkdir -pv ./gopath/src/github.com/mweagle/helloworld
   displayName: Initialize source directory
@@ -13,7 +16,7 @@ steps:
 - bash: curl -L -O https://dl.google.com/go/go1.9.2.linux-amd64.tar.gz
   displayName: Download Go
 
-- bash: tar -xzf go1.9.2.linux-amd64.tar.gz
+- bash: tar -xzf go1.9.2.linux-amd64.tar.gz -c $BUILD_SOURCESDIRECTORY
   displayName: Expand Go
 
 - bash: ls -la .
@@ -25,9 +28,9 @@ steps:
 - bash: pwd
   displayName: Current Directory
 
-- bash: $AGENT_BUILDDIRECTORY/go/bin/go build
+- bash: $BUILD_SOURCESDIRECTORY/go/bin/go build
   workingDirectory: ./gopath/src/github.com/mweagle/helloworld
   env:
-    GOPATH: $AGENT_BUILDDIRECTORY/gopath
-    GOROOT: $AGENT_BUILDDIRECTORY/go
+    GOPATH: $BUILD_SOURCESDIRECTORY/gopath
+    GOROOT: $BUILD_SOURCESDIRECTORY/go
   displayName: Build
