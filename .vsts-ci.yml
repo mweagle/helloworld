@@ -19,11 +19,16 @@ steps:
 - bash: tar -xzf go1.9.2.linux-amd64.tar.gz -C $BUILD_SOURCESDIRECTORY
   displayName: Expand Go
 
-- bash: ls -la .
-  displayName: Directory Listing
+- bash: which make
+  continueOnError: true
+  displayName: Which Make
 
-- bash: pwd
-  displayName: Current Directory
+- bash: env && $BUILD_SOURCESDIRECTORY/go/bin/go test -v .
+  workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
+  env:
+    GOPATH: $(Build.SourcesDirectory)/gopath
+    GOROOT: $(Build.SourcesDirectory)/go
+  displayName: Unit Test
 
 - bash: env && $BUILD_SOURCESDIRECTORY/go/bin/go build -v .
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
