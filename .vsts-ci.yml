@@ -36,3 +36,10 @@ steps:
     GOPATH: $(Build.SourcesDirectory)/gopath
     GOROOT: $(Build.SourcesDirectory)/go
   displayName: Build
+
+- task: publishBuildArtifacts@1
+  displayName: Publish Artifacts
+  inputs:
+    PathtoPublish: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
+    ArtifactName: helloworld
+    ArtifactType: Container
