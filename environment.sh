@@ -1,5 +1,4 @@
 #!/bin/bash -ex
-
 echo "ENVIRONMENT"
 env
 
