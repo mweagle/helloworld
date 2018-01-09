@@ -7,9 +7,6 @@ steps:
 - bash: docker -v
   displayName: Display Docker Version
 
-- bash: echo $(PUBLIC_VARIABLE)
-  displayName: Echo Public Variable
-
 - bash: mkdir -pv ./gopath/src/github.com/mweagle/helloworld
   displayName: Initialize source directory
 
@@ -65,6 +62,12 @@ steps:
 - bash: docker build .
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   displayName: Package
+
+- bash: |
+    docker login -u="$(DOCKER_HUB_USERNAME)" -p="$(DOCKER_HUB_PASSWORD)"
+    docker push mweagle/go-helloworld
+  workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
+  displayName: Publish To Docker
 
 - task: publishBuildArtifacts@1
   displayName: Publish Artifacts
