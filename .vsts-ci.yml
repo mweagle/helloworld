@@ -36,14 +36,15 @@ steps:
   env:
     GOPATH: $(Build.SourcesDirectory)/gopath
     GOROOT: $(Build.SourcesDirectory)/go
-  displayName: Get JUnit Reporter
+    GOBIN: $(Build.SourcesDirectory)/go/bin
+  displayName: Install JUnit Reporter
 
-- bash: $BUILD_SOURCESDIRECTORY/go/bin/go test -v 2>&1 |$BUILD_SOURCESDIRECTORY/go/bin/go-junit-report > junit.xml
+- bash: $BUILD_SOURCESDIRECTORY/go/bin/go test -v 2>&1 | $BUILD_SOURCESDIRECTORY/go/bin/go-junit-report > junit.xml
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   env:
     GOPATH: $(Build.SourcesDirectory)/gopath
     GOROOT: $(Build.SourcesDirectory)/go
-  displayName: Get JUnit Reporter
+  displayName: Run Tests
 
 - task: PublishTestResults@1
   displayName: Publish Test Results
