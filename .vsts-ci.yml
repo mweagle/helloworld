@@ -4,7 +4,7 @@
 steps:
 - bash: docker -v
   displayName: Check docker version
-  
+
 - bash: mkdir -pv ./gopath/src/github.com/mweagle/helloworld
   displayName: Initialize source directory
 
@@ -40,7 +40,7 @@ steps:
     GOROOT: $(Build.SourcesDirectory)/go
   displayName: Build
 
-- bash docker build .
+- bash: docker build .
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   displayName: Package
 
