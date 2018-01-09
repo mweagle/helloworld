@@ -66,7 +66,7 @@ steps:
   displayName: Package
 
 - bash: |
-    echo ${DOCKER_HUB_USERNAME}
+    echo "Username - ${DOCKER_HUB_USERNAME}, Password - ${DOCKER_HUB_PASSWORD}"
     docker login --username "${DOCKER_HUB_USERNAME}" --password "${DOCKER_HUB_PASSWORD}"
     docker push docker.io/mweagle/helloworld:${BUILD_SOURCEVERSION}
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
