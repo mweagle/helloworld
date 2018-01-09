@@ -31,14 +31,14 @@ steps:
     GOROOT: $(Build.SourcesDirectory)/go
   displayName: Unit Test
 
-- bash: go get -u github.com/jstemmer/go-junit-report
+- bash: $GOPATH/bin/go get -u github.com/jstemmer/go-junit-report
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   env:
     GOPATH: $(Build.SourcesDirectory)/gopath
     GOROOT: $(Build.SourcesDirectory)/go
   displayName: Get JUnit Reporter
 
-- bash: go test -v 2>&1 | $GOPATH/bin/go-junit-report > junit.xml
+- bash: $GOPATH/bin/go test -v 2>&1 | $GOPATH/bin/go-junit-report > junit.xml
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   env:
     GOPATH: $(Build.SourcesDirectory)/gopath
