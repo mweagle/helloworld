@@ -1,5 +1,7 @@
 # Build environment:
 # https://docs.microsoft.com/en-us/vsts/build-release/concepts/definitions/build/variables?tabs=batch
+# Build tasks:
+# https://github.com/Microsoft/vsts-tasks
 
 steps:
 - bash: docker -v
@@ -22,16 +24,32 @@ steps:
 - bash: tar -xzf go1.9.2.linux-amd64.tar.gz -C $BUILD_SOURCESDIRECTORY
   displayName: Expand Go
 
-- bash: which make
-  continueOnError: true
-  displayName: Which Make
-
 - bash: $BUILD_SOURCESDIRECTORY/go/bin/go test -v .
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   env:
     GOPATH: $(Build.SourcesDirectory)/gopath
     GOROOT: $(Build.SourcesDirectory)/go
   displayName: Unit Test
+
+- bash: go get -u github.com/jstemmer/go-junit-report
+  workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
+  env:
+    GOPATH: $(Build.SourcesDirectory)/gopath
+    GOROOT: $(Build.SourcesDirectory)/go
+  displayName: Get JUnit Reporter
+
+- bash: go test -v 2>&1 | $GOPATH/bin/go-junit-report > junit.xml
+  workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
+  env:
+    GOPATH: $(Build.SourcesDirectory)/gopath
+    GOROOT: $(Build.SourcesDirectory)/go
+  displayName: Get JUnit Reporter
+
+- task: PublishTestResults@1
+  displayName: Publish Test Results
+  inputs:
+    testRunner: JUnit
+    testResultsFiles: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld/junit.xml
 
 - bash: $BUILD_SOURCESDIRECTORY/go/bin/go build -v .
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
