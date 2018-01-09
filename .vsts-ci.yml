@@ -40,6 +40,10 @@ steps:
     GOROOT: $(Build.SourcesDirectory)/go
   displayName: Build
 
+- bash docker build .
+  workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
+  displayName: Package
+
 - task: publishBuildArtifacts@1
   displayName: Publish Artifacts
   inputs:
