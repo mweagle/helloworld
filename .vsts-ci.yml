@@ -5,7 +5,10 @@
 
 steps:
 - bash: docker -v
-  displayName: Check docker version
+  displayName: Display Docker Version
+
+- bash: env
+  displayName: Display Environment
 
 - bash: mkdir -pv ./gopath/src/github.com/mweagle/helloworld
   displayName: Initialize source directory
