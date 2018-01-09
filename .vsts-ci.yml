@@ -59,13 +59,13 @@ steps:
     GOROOT: $(Build.SourcesDirectory)/go
   displayName: Build
 
-- bash: docker build .
+- bash: docker build -t helloworld:$(BUILD_SOURCEVERSION) .
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   displayName: Package
 
 - bash: |
     docker login -u="$(DOCKER_HUB_USERNAME)" -p="$(DOCKER_HUB_PASSWORD)"
-    docker push mweagle/go-helloworld
+    docker push helloworld:$(BUILD_SOURCEVERSION)
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   displayName: Publish To Docker
 
