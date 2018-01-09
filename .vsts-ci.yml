@@ -61,13 +61,13 @@ steps:
 
 - bash: |
     env
-    docker build -t helloworld:"$(BUILD_SOURCEVERSION)" .
+    docker build -t helloworld:${BUILD_SOURCEVERSION} .
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   displayName: Package
 
 - bash: |
     docker login -u="$(DOCKER_HUB_USERNAME)" -p="$(DOCKER_HUB_PASSWORD)"
-    docker push helloworld:"$(BUILD_SOURCEVERSION)"
+    docker push helloworld:${BUILD_SOURCEVERSION}
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   displayName: Publish To Docker
 
