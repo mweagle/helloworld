@@ -7,8 +7,8 @@ steps:
 - bash: docker -v
   displayName: Display Docker Version
 
-- bash: env
-  displayName: Display Environment
+- bash: echo $(PUBLIC_VARIABLE)
+  displayName: Echo Public Variable
 
 - bash: mkdir -pv ./gopath/src/github.com/mweagle/helloworld
   displayName: Initialize source directory
