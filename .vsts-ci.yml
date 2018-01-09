@@ -67,7 +67,7 @@ steps:
 
 - bash: |
     docker login --username ${DOCKER_HUB_USERNAME} --password ${DOCKER_HUB_PASSWORD}
-    docker push helloworld:${BUILD_SOURCEVERSION}
+    docker push helloworld:${BUILD_SOURCEVERSION} mweagle/helloworld
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   displayName: Publish To Docker
 
