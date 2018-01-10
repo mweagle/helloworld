@@ -70,11 +70,8 @@ steps:
     echo "Username - ${DOCKER_HUB_USERNAME}, Password - ${DOCKER_HUB_PASSWORD}"
     docker login --username "${DOCKER_HUB_USERNAME}" --password "${DOCKER_HUB_PASSWORD}"
     docker push docker.io/mweagle/helloworld:${BUILD_SOURCEVERSION}
-  inputs:
-    $(variable_name)
   env:
    DOCKER_HUB_PASSWORD: $(DOCKER_HUB_PASSWORD)
-
   workingDirectory: $(Build.SourcesDirectory)/gopath/src/github.com/mweagle/helloworld
   displayName: Publish To Docker
 
